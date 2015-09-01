@@ -1,0 +1,14 @@
+[push]
+	default = current
+[color]
+	ui = auto
+[alias]
+	st = status
+	co = checkout
+	graph = log --graph --pretty=format:\"%C(yellow)%h%Cblue%d%C(reset) %s %C(white) %an, %ar%C(reset)\"
+  br = branch
+[user]
+	name = Chester
+	email = chesterlam620@gmail.com
+[core]
+	editor = vim
