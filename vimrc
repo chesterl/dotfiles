@@ -12,6 +12,7 @@ Plugin 'ervandew/supertab'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 " Required for auto indent when pressing enter
@@ -66,3 +67,7 @@ nnoremap <S-right> :vertical resize +5<cr>
 " Leader shortcuts
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<cr>a
+
+" Nerd Tree shortcut
+let mapleader = ","
+nmap <leader>nt :NERDTree<cr>
