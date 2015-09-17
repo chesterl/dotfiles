@@ -81,3 +81,10 @@ let g:ctrlp_custom_ignore .= '/dist/\|'
 let g:ctrlp_custom_ignore .= '/node_modules/\|'
 let g:ctrlp_custom_ignore .= '/plugins/\|'
 let g:ctrlp_custom_ignore .= 'REGEX_TERMINATOR'
+
+" Copy current buffer path relative to root of VIM session to system clipboard
+nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+" Copy current filename to system clipboard
+nnoremap <Leader>yf :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
+" Copy current buffer path without filename to system clipboard
+nnoremap <Leader>yd :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
