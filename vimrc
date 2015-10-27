@@ -13,6 +13,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 " Required for auto indent when pressing enter
