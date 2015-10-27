@@ -14,23 +14,36 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'mileszs/ack.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'christoomey/vim-tmux-navigator'
 
 call vundle#end()
 " Required for auto indent when pressing enter
 filetype plugin indent on
 
 syntax enable
-:set number
-:set statusline+=%F
+set number
+set statusline+=%F
+set history=20
 
 " Jump 5 lines when hit end/top of page
-:set scrolljump=5
+set scrolljump=5
 
 " Set up 2 space tabbing and indenting
 set tabstop=2
 set expandtab
 set shiftwidth=2
 set smarttab
+
+set backspace=indent,eol,start  " Allow backspace in insert mode
+set autoread                    " Reload files changed outside vim"
+set laststatus=2                " Always show status line
+set splitright                  " Opens vertical split right of current window
+set splitbelow                  " Opens horizontal split below current window
+
+" Search setting
+set hlsearch         " Highlight searches by default
+
 
 " NERDtree - autoopen
 autocmd StdinReadPre * let s:std_in=1
@@ -65,13 +78,17 @@ nnoremap <S-down> :resize +5<cr>
 nnoremap <S-up> :resize -5<cr>
 nnoremap <S-right> :vertical resize +5<cr>
 
-" Leader shortcuts
+" Save shortcuts
+" Does not work
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<cr>a
 
 " Nerd Tree shortcut
 let mapleader = ","
 nmap <leader>nt :NERDTree<cr>
+
+" Source shortcut
+map <leader>rr :source ~/.vimrc<CR>
 
 " ctrlp config
 let g:ctrlp_max_height = 16
