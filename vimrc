@@ -18,12 +18,16 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'jgdavey/tslime.vim'
+Plugin 'kchmck/vim-coffee-script'
 
 call vundle#end()
 " Required for auto indent when pressing enter
 filetype plugin indent on
 
 syntax enable
+set background=dark
+colorscheme solarized
+
 set number
 set statusline+=%F
 set history=20
@@ -67,6 +71,16 @@ au InsertLeave * match ExtraWhiteSpace /\s\+$/
 
 " Delete trailing white space and Dos-returns and to expand tabs to spaces
 noremap <F2> :set et<CR>:retab!<CR>:%s/[\r \t]\+$//<CR>
+
+" Strip whitespace on save
+function! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfun
+
+autocmd BufWritePre *.rb,*.js,*.html,*.erb :call <SID>StripTrailingWhitespaces()
 
 " Allow navigation with Ctrl + direction with multi window
 nnoremap <C-j> <C-w>j
