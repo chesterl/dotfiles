@@ -13,7 +13,11 @@
   graph = log --graph --pretty=format:\"%C(yellow)%h%Cblue%d%C(reset) %s %C(white) %an, %ar%C(reset)\"
 
 [core]
-	editor = /usr/local/bin/vim
+	editor = "vim"
 
 [push]
         ui = auto
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
