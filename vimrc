@@ -27,6 +27,7 @@ filetype plugin indent on
 
 syntax enable
 set background=dark
+set clipboard=unnamed
 colorscheme solarized
 
 set number
