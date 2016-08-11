@@ -1,33 +1,23 @@
 [user]
-  name = Chester Lam
-  email = chesterlam620@gmail.com
+	name = Chester Lam
+	email = chesterlam620@gmail.com
 
 [alias]
-  co = git checkout
+  co = checkout
   ci = commit
-  cia = commit --amend
   st = status
   br = branch
-  rb = rebase
-  d = diff
-  a = add
-  f = fetch
-  cl = clone
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
   type = cat-file -t
   dump = cat-file -p
   graph = log --graph --pretty=format:\"%C(yellow)%h%Cblue%d%C(reset) %s %C(white) %an, %ar%C(reset)\"
-  lol = log --oneline
-  sta = stash
-  stap = stash pop
-  stal = stash list
 
 [core]
-  editor = "vim"
+	editor = "vim"
 
 [push]
         ui = auto
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
