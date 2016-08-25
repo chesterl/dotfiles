@@ -3,7 +3,7 @@
   email = chesterlam620@gmail.com
 
 [alias]
-  co = git checkout
+  co = checkout
   ci = commit
   cia = commit --amend
   st = status

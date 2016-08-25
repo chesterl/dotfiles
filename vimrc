@@ -143,3 +143,5 @@ else
   nmap ,cs :let @*=expand("%")<CR>
   nmap ,cl :let @*=expand("%:p")<CR>
 endif
+
+:nmap <F1> :grep<space>-R<space>
