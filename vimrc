@@ -126,6 +126,9 @@ nnoremap <Leader>yf :let @*=expand("%:t")<cr>:echo "Copied file name to clipboar
 " Copy current buffer path without filename to system clipboard
 nnoremap <Leader>yd :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 
+"S+R under cursor
+:nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
+
 " Send rspec to tmux
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 map <Leader>t :call RunCurrentSpecFile()<CR>
