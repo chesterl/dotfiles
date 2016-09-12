@@ -20,6 +20,7 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 " Required for auto indent when pressing enter
