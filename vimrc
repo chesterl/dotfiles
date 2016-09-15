@@ -98,9 +98,9 @@ nnoremap <S-up> :resize -5<cr>
 nnoremap <S-right> :vertical resize +5<cr>
 
 " Save shortcuts
-" Does not work
-inoremap <C-s> <esc>:w<cr>a
-nnoremap <C-s> :w<cr>a
+" TOFIX
+" inoremap <C-s> <esc>:w<cr>a
+" nnoremap <C-s> :w<cr>a
 
 " Nerd Tree shortcut
 let mapleader = ","
@@ -128,6 +128,31 @@ nnoremap <Leader>yd :let @*=expand("%:h")<cr>:echo "Copied file directory to cli
 
 "S+R under cursor
 :nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
+
+"Search word under cursor
+" map <Leader>K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+"F1 grep
+:nmap <F1> :grep<space>-R<space>
+
+" Toggles the quickfix window.
+nmap <silent> \` :QFix<CR>
+
+command -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+  else
+    execute "copen " . 20
+  endif
+endfunction
+
+" used to track the quickfix window
+augroup QFixToggle
+ autocmd!
+ autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
+ autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
+augroup END
 
 " Send rspec to tmux
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
