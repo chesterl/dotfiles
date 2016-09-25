@@ -129,15 +129,11 @@ nnoremap <Leader>yd :let @*=expand("%:h")<cr>:echo "Copied file directory to cli
 "S+R under cursor
 :nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
 
-"Search word under cursor
-" map <Leader>K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
 "F1 grep
 :nmap <F1> :grep<space>-R<space>
 
 " Toggles the quickfix window.
 nmap <silent> \` :QFix<CR>
-
 command -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
   if exists("g:qfix_win") && a:forced == 0
