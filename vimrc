@@ -21,6 +21,7 @@ Plugin 'jgdavey/tslime.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mattn/emmet-vim'
+Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
 " Required for auto indent when pressing enter
@@ -52,7 +53,6 @@ set splitbelow                  " Opens horizontal split below current window
 
 " Search setting
 set hlsearch         " Highlight searches by default
-
 
 " NERDtree - autoopen
 autocmd StdinReadPre * let s:std_in=1
@@ -97,8 +97,20 @@ nnoremap <S-down> :resize +5<cr>
 nnoremap <S-up> :resize -5<cr>
 nnoremap <S-right> :vertical resize +5<cr>
 
+" Setup silversearcher AG
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
 " Save shortcuts
-" TOFIX
+" TODO
 " inoremap <C-s> <esc>:w<cr>a
 " nnoremap <C-s> :w<cr>a
 
@@ -129,32 +141,49 @@ nnoremap <Leader>yd :let @*=expand("%:h")<cr>:echo "Copied file directory to cli
 "S+R under cursor
 :nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
 
-"F1 grep
-:nmap <F1> :grep<space>-R<space>
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+
+" Search word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Toggles the quickfix window.
-nmap <silent> \` :QFix<CR>
-command -bang -nargs=? QFix call QFixToggle(<bang>0)
-function! QFixToggle(forced)
-  if exists("g:qfix_win") && a:forced == 0
-    cclose
-  else
-    execute "copen " . 20
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
   endif
 endfunction
 
-" used to track the quickfix window
-augroup QFixToggle
- autocmd!
- autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
- autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
-augroup END
+nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+nmap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
 
 " Send rspec to tmux
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
+map <Leader>ls :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 "Copy filename
@@ -169,4 +198,14 @@ else
   nmap ,cl :let @*=expand("%:p")<CR>
 endif
 
-:nmap <F1> :grep<space>-R<space>
+" Auto close tags TODO
+" function s:CompleteTags()
+"   inoremap <buffer> > ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR>
+"   inoremap <buffer> ><Leader> >
+"   inoremap <buffer> ><CR> ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR><CR><Tab><CR><Up><C-O>$
+" endfunction
+" autocmd BufRead,BufNewFile *.html,*.js,*.xml call s:CompleteTags()
+
+"Experimental fix for resize TODO
+map <Esc>[B <Down>
+
