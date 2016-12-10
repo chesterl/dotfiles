@@ -109,11 +109,6 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" Save shortcuts
-" TODO
-" inoremap <C-s> <esc>:w<cr>a
-" nnoremap <C-s> :w<cr>a
-
 " Nerd Tree shortcut
 let mapleader = ","
 nmap <leader>nt :NERDTree<cr>
@@ -142,7 +137,6 @@ nnoremap <Leader>yd :let @*=expand("%:h")<cr>:echo "Copied file directory to cli
 :nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
 
 " bind \ (backward slash) to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
 " Search word under cursor
@@ -197,14 +191,6 @@ else
   nmap ,cs :let @*=expand("%")<CR>
   nmap ,cl :let @*=expand("%:p")<CR>
 endif
-
-" Auto close tags TODO
-" function s:CompleteTags()
-"   inoremap <buffer> > ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR>
-"   inoremap <buffer> ><Leader> >
-"   inoremap <buffer> ><CR> ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR><CR><Tab><CR><Up><C-O>$
-" endfunction
-" autocmd BufRead,BufNewFile *.html,*.js,*.xml call s:CompleteTags()
 
 "Experimental fix for resize TODO
 map <Esc>[B <Down>
