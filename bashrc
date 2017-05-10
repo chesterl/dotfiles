@@ -133,3 +133,4 @@ fi
 # source ~/git-flow-completion.bash
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
