@@ -23,3 +23,5 @@ alias gstap="git stash pop"
 alias gstashl="git stash list"
 alias gstashlp="git stash list -p"
 alias cl="clear"
+
+alias site="cd ~/oneflare/site"

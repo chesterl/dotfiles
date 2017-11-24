@@ -2,6 +2,9 @@ set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
+set path+=**
+set complete=.,w,b,u,t
+set wildmenu
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
@@ -117,7 +120,9 @@ nmap <leader>nt :NERDTree<cr>
 map <leader>rr :source ~/.vimrc<CR>
 
 " ctrlp config
-let g:ctrlp_max_height = 16
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
+let g:ctrlp_max_height=20
 let g:ctrlp_custom_ignore = ''
 let g:ctrlp_custom_ignore .= '/\..*/\|'
 let g:ctrlp_custom_ignore .= '/tmp/\|'
@@ -196,3 +201,5 @@ endif
 "Experimental fix for resize TODO
 map <Esc>[B <Down>
 
+"Quickfix open
+autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
