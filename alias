@@ -23,6 +23,14 @@ alias gstap="git stash pop"
 alias gstashl="git stash list"
 alias gstashlp="git stash list -p"
 alias cl="clear"
+alias rs='bx spring rspec'
+alias tlog='tail -f log/development.log'
+
+## JR
+alias dbash='docker-compose run --rm app /bin/bash'
+alias dup='docker-compose up'
+alias dbd='docker-compose build'
+alias bkite='docker-compose run --rm app ./buildkite-hack.rb -b'
 
 # SSH edge
 alias shedge1='ssh nep-edge1.syd1.int.jobready.io'
