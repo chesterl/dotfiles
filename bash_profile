@@ -20,5 +20,4 @@ PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW\$(parse_git_branch)$NO_COLOR\$"
 
 source ~/.alias
 source ~/.bashrc
-source ~/.k8rc
 export PATH="/usr/local/opt/elasticsearch@1.7/bin:$PATH"

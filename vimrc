@@ -5,6 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set path+=**
 set complete=.,w,b,u,t
 set wildmenu
+set modifiable
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'

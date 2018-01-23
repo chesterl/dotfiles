@@ -24,4 +24,12 @@ alias gstashl="git stash list"
 alias gstashlp="git stash list -p"
 alias cl="clear"
 
-alias site="cd ~/oneflare/site"
+# SSH edge
+alias shedge1='ssh nep-edge1.syd1.int.jobready.io'
+alias shedge2='ssh nep-edge2.syd1.int.jobready.io'
+alias shedge3='ssh nep-edge3.syd1.int.jobready.io'
+alias shedge4='ssh nep-edge4.syd1.int.jobready.io'
+alias shedge5='ssh nep-edge5.syd1.int.jobready.io'
+
+# Start puma
+alias startpuma="bundle exec puma -b 'tcp://0.0.0.0:9292' -w 1 --pidfile tmp/puma.pid --state tmp/puma.state -C config/puma.rb"
