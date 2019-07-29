@@ -1,4 +1,5 @@
 alias vim='/usr/local/bin/vim'
+alias vi='/usr/local/bin/vim'
 alias bx="bundle exec"
 alias gco="git checkout"
 alias gpl="git pull"
@@ -22,14 +23,19 @@ alias gstash="git stash"
 alias gstap="git stash pop"
 alias gstashl="git stash list"
 alias gstashlp="git stash list -p"
+alias gcp="git cherry-pick"
+alias gcpc="git cherry-pick --continue"
 alias cl="clear"
 alias rs='bx spring rspec'
 alias tlog='tail -f log/development.log'
 
 ## JR
 alias dbash='docker-compose run --rm app /bin/bash'
+alias dat='docker attach neptune_app_1'
 alias dup='docker-compose up'
+alias ddown='docker-compose down'
 alias dbd='docker-compose build'
+alias dka='docker kill $(docker ps -q)'
 alias bkite='docker-compose run --rm app ./buildkite-hack.rb -b'
 
 # SSH edge
