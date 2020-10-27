@@ -23,7 +23,7 @@
   stal = stash list
 
 [core]
-  editor = "vim"
+	editor = vim
 	excludesfile = /Users/chesterlam/.global_ignore
 
 [push]
@@ -32,3 +32,5 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+[commit]
+	gpgsign = true

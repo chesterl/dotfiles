@@ -6,6 +6,7 @@ set path+=**
 set complete=.,w,b,u,t
 set wildmenu
 set modifiable
+set ma
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'

@@ -13,6 +13,7 @@ alias grb="git rebase"
 alias grbc="git rebase --continue"
 alias grba="git rebase --abort"
 alias gd="git diff"
+alias gdc="git diff --cached"
 alias gap="git add -p"
 alias gf="git fetch"
 alias gma="git merge --abort"
@@ -26,17 +27,23 @@ alias gstashlp="git stash list -p"
 alias gcp="git cherry-pick"
 alias gcpc="git cherry-pick --continue"
 alias cl="clear"
-alias rs='bx spring rspec'
 alias tlog='tail -f log/development.log'
+alias cy='./node_modules/.bin/cypress open'
 
 ## JR
+alias dtest="docker-compose run --rm app bundle exec rspec"
 alias dbash='docker-compose run --rm app /bin/bash'
+alias dr='docker-compose run --rm app'
+alias drgm='docker-compose run --rm app bundle exec rails g migration'
+alias drdbr='docker-compose run --rm app bundle exec rake db:rollback'
+alias drdbm='docker-compose run --rm app bundle exec rake db:migrate'
 alias dat='docker attach neptune_app_1'
 alias dup='docker-compose up'
 alias ddown='docker-compose down'
 alias dbd='docker-compose build'
 alias dka='docker kill $(docker ps -q)'
 alias bkite='docker-compose run --rm app ./buildkite-hack.rb -b'
+alias edeploy="docker-compose run -v ~/.buildkite-build:/root/.buildkite-build app buildkite-build -p neptune-aws-deploys"
 
 # SSH edge
 alias shedge1='ssh nep-edge1.syd1.int.jobready.io'
