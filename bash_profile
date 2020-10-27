@@ -42,9 +42,6 @@ source ~/.bashrc
 # <<< conda init <<<
 
 
-export PRISM_KEY="39918bf3-a1b6-4395-af6f-4bede01191f4"
-export PRISM_SECRET="93120294-23ed-42a7-b4bf-d941714978ad"
-export PRISM_BACKEND_AUTH="990B484E-C2A1-481A-802B-2E7F87430702"
 export PATH=/usr/local/opt/mysql@5.7/bin:"$PATH"
 export PATH=/Users/chesterl/.local/bin:"$PATH"
 
