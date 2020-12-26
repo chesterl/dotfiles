@@ -29,6 +29,7 @@ alias gcpc="git cherry-pick --continue"
 alias cl="clear"
 alias tlog='tail -f log/development.log'
 alias cy='./node_modules/.bin/cypress open'
+alias gpgreset='killall gpg-agent && gpg-agent --daemon --pinentry-program /usr/local/bin/pinentry'
 
 ## JR
 alias dtest="docker-compose run --rm app bundle exec rspec"
