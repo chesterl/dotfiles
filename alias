@@ -27,24 +27,45 @@ alias gstashlp="git stash list -p"
 alias gcp="git cherry-pick"
 alias gcpc="git cherry-pick --continue"
 alias cl="clear"
+alias tenants="vi infra/config/production/tenants/"
+# MADS
+alias mads="git checkout staging && git pull && git merge --no-ff origin/develop"
+
 alias tlog='tail -f log/development.log'
 alias cy='./node_modules/.bin/cypress open'
 alias gpgreset='killall gpg-agent && gpg-agent --daemon --pinentry-program /usr/local/bin/pinentry'
+# Priv user login
+alias ap-edge='export AWS_PROFILE=jobready-live-dev; export AWS_REGION=ap-southeast-2; aws sso login --profile $AWS_PROFILE'
+alias ap-prod='export AWS_PROFILE=jr-live-prod-admin; export AWS_REGION=ap-southeast-2; aws sso login --profile $AWS_PROFILE'
+alias al-edge='docker compose run --rm tools ./session.sh -u chesterl -n live -e edge -p neptune'
+alias al-staging='docker compose run --rm tools ./session.sh -u chesterl -n live -e staging -p neptune'
+alias al-prod='docker compose run --rm tools ./session.sh -u chesterl -n live -e production -p neptune'
 
 ## JR
-alias dtest="docker-compose run --rm app bundle exec rspec"
-alias dbash='docker-compose run --rm app /bin/bash'
-alias dr='docker-compose run --rm app'
-alias drgm='docker-compose run --rm app bundle exec rails g migration'
-alias drdbr='docker-compose run --rm app bundle exec rake db:rollback'
-alias drdbm='docker-compose run --rm app bundle exec rake db:migrate'
-alias dat='docker attach neptune_app_1'
-alias dup='docker-compose up'
-alias ddown='docker-compose down'
-alias dbd='docker-compose build'
+alias dtest="docker compose run --rm app bundle exec rspec"
+# alias dtest="docker-compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.dev.yml run --rm app bundle exec rspec"
+alias dbash='docker compose run --rm app /bin/bash'
+alias drc='docker compose run --rm app bundle exec rails c'
+alias dr='docker compose run --rm app'
+alias dbam='dr bundle install && drdbm'
+alias drgm='docker compose run --rm app bundle exec rails g migration'
+# alias drgm='docker-compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.dev.yml --rm app bundle exec rails g migration'
+alias drdbr='docker compose run --rm app bundle exec rake db:rollback'
+alias drdbm='docker compose run --rm app bundle exec rake db:migrate'
+alias dat='docker attach neptune-app-1'
+alias dup='docker compose up'
+# alias dup='docker-compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.dev.yml up'
+alias drgp="docker compose run --rm app bundle exec rails g patches:patch"
+alias ddown='docker compose down'
+alias dbd='docker compose build'
 alias dka='docker kill $(docker ps -q)'
-alias bkite='docker-compose run --rm app ./buildkite-hack.rb -b'
-alias edeploy="docker-compose run -v ~/.buildkite-build:/root/.buildkite-build app buildkite-build -p neptune-aws-deploys"
+alias webpack='docker compose run --rm -T app bin/webpack --color --watch'
+alias bkite='docker compose run --rm app ./buildkite-hack.rb -b'
+alias edeploy="docker compose run -v ~/.buildkite-build:/root/.buildkite-build app buildkite-build -p neptune-aws-deploys"
+
+alias dss="docker-sync stop"
+alias dsc="docker-sync clean"
+alias dsg="docker-sync start"
 
 # SSH edge
 alias shedge1='ssh nep-edge1.syd1.int.jobready.io'

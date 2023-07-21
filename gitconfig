@@ -1,6 +1,7 @@
 [user]
-  name = Chester Lam
-  email = chesterlam620@gmail.com
+	name = Chester Lam
+	email = chesterlam620@gmail.com
+	signingkey = C8DC390BE7957137
 
 [alias]
   co = checkout

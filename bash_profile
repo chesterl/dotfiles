@@ -44,6 +44,7 @@ source ~/.bashrc
 
 export PATH=/usr/local/opt/mysql@5.7/bin:"$PATH"
 export PATH=/Users/chesterl/.local/bin:"$PATH"
+export AWS_REGION=ap-southeast-2
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"

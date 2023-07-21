@@ -5,12 +5,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set path+=**
 set complete=.,w,b,u,t
 set wildmenu
-set modifiable
 set ma
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
@@ -27,6 +26,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mattn/emmet-vim'
 Plugin 'Yggdroot/indentLine'
+Plugin 'github/copilot.vim'
 
 call vundle#end()
 " Required for auto indent when pressing enter
@@ -132,6 +132,8 @@ let g:ctrlp_custom_ignore .= '/dist/\|'
 let g:ctrlp_custom_ignore .= '/node_modules/\|'
 let g:ctrlp_custom_ignore .= '/plugins/\|'
 let g:ctrlp_custom_ignore .= 'REGEX_TERMINATOR'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
 
 " Copy current buffer path relative to root of VIM session to system clipboard
 nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
