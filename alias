@@ -21,6 +21,7 @@ alias glol="git log --oneline"
 alias glog="git log"
 alias gsh="git show"
 alias gstash="git stash"
+alias gstashs="git stash show -p"
 alias gstap="git stash pop"
 alias gstashl="git stash list"
 alias gstashlp="git stash list -p"
@@ -28,6 +29,7 @@ alias gcp="git cherry-pick"
 alias gcpc="git cherry-pick --continue"
 alias cl="clear"
 alias tenants="vi infra/config/production/tenants/"
+alias js-regen="docker-compose run --rm app rake i18n:js:export"
 # MADS
 alias mads="git checkout staging && git pull && git merge --no-ff origin/develop"
 
@@ -37,9 +39,11 @@ alias gpgreset='killall gpg-agent && gpg-agent --daemon --pinentry-program /usr/
 # Priv user login
 alias ap-edge='export AWS_PROFILE=jobready-live-dev; export AWS_REGION=ap-southeast-2; aws sso login --profile $AWS_PROFILE'
 alias ap-prod='export AWS_PROFILE=jr-live-prod-admin; export AWS_REGION=ap-southeast-2; aws sso login --profile $AWS_PROFILE'
-alias al-edge='docker compose run --rm tools ./session.sh -u chesterl -n live -e edge -p neptune'
-alias al-staging='docker compose run --rm tools ./session.sh -u chesterl -n live -e staging -p neptune'
-alias al-prod='docker compose run --rm tools ./session.sh -u chesterl -n live -e production -p neptune'
+alias ap-sweden='export AWS_PROFILE=jr-prod-sw; export AWS_REGION=eu-north-1; aws sso login --profile $AWS_PROFILE'
+alias al-edge='docker compose run --rm tools ./session.sh -u chesterl -n live -e edge -p neptune -i t3.medium'
+alias al-staging='docker compose run --rm tools ./session.sh -u chesterl -n live -e staging -p neptune -i t3.medium'
+alias al-prod='docker compose run --rm tools ./session.sh -u chesterl -n live -e production -p neptune -i t3.medium'
+alias al-sweden='docker-compose run --rm tools ./session.sh -u chesterl -n live -e staging -p neptune -r eu-north-1 -i t3.medium'
 
 ## JR
 alias dtest="docker compose run --rm app bundle exec rspec"
@@ -60,6 +64,11 @@ alias ddown='docker compose down'
 alias dbd='docker compose build'
 alias dka='docker kill $(docker ps -q)'
 alias webpack='docker compose run --rm -T app bin/webpack --color --watch'
+alias french="docker-compose run --rm app bundle exec i18n-tasks add-missing -v '**TEST**' fr-CA"
+alias sweden="docker-compose run --rm app bundle exec i18n-tasks add-missing -v '**%{value_or_human_key}**' sv"
+alias normalize="docker-compose run --rm app bundle exec i18n-tasks normalize"
+
+
 alias bkite='docker compose run --rm app ./buildkite-hack.rb -b'
 alias edeploy="docker compose run -v ~/.buildkite-build:/root/.buildkite-build app buildkite-build -p neptune-aws-deploys"
 
